@@ -20,6 +20,6 @@ export const login = async (req: Request, res: Response) => {
   if (!user || !(await compareHash(password, user.passwordHash))) {
     return res.status(401).json({ message: "Invalid credentials" });
   }
-  const token = signJwt({ userId: user.id });
+  const token = signJwt({ userId: user.id, email: user.email });
   return res.json({ token });
 };
